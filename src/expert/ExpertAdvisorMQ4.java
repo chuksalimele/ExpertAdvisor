@@ -482,7 +482,7 @@ public abstract class ExpertAdvisorMQ4 implements IExpertAdvisor{
 
     @Override
     public String IntegerToString(int value) {
-        return Integer.toString(value);
+        return Integer.toString(value);//
     }
 
     @Override
