@@ -61,7 +61,7 @@ public interface IExpertAdvisor {
     public int SYMBOL_SWAP_SHORT = 8; // Swap short value
     public int SYMBOL_SPREAD = 9; // Spread value
     public int SYMBOL_ASK = 10;
-    public int SYMBOL_BID = 11; 
+    public int SYMBOL_BID = 11;
     public int SYMBOL_TRADE_MODE = 12;
     public int SYMBOL_TRADE_MODE_DISABLED = 13;
     public int SYMBOL_TRADE_MODE_LONGONLY = 14;
@@ -69,7 +69,6 @@ public interface IExpertAdvisor {
     public int SYMBOL_TRADE_MODE_CLOSEONLY = 16;
     public int SYMBOL_TRADE_MODE_FULL = 17;
     public int SYMBOL_TRADE_CONTRACT_SIZE = 18; // Contract size
-
 
     // Order Types
     public int OP_BUY = 0; // Buy order
@@ -92,28 +91,24 @@ public interface IExpertAdvisor {
     public int MODE_SWAPSHORT = 5; // Swap short mode
     public int MODE_ASK = 6; // Ask price mode
     public int MODE_BID = 7; // Bid price mode
-    public int MODE_HIGH = 8; 
+    public int MODE_HIGH = 8;
     public int MODE_LOW = 9;
-    public int MODE_OPEN = 10; 
+    public int MODE_OPEN = 10;
     public int MODE_CLOSE = 11;
-    public int MODE_TRADEALLOWED = 12; // Trade allowed mode
-    public int MODE_LOTSIZE = 13; // Trade allowed mode
-    public int MODE_HISTORY = 14; 
-    public int MODE_TICKSIZE = 15; 
-    
-
-
-    
+    public int MODE_VOLUME = 12;
+    public int MODE_TIME = 13;
+    public int MODE_TRADEALLOWED = 14; // Trade allowed mode
+    public int MODE_LOTSIZE = 15; // Trade allowed mode
+    public int MODE_HISTORY = 16;
+    public int MODE_TICKSIZE = 17;
 
     public int ERR_SYMBOL_NOT_FOUND = 4000;//Symbol not found - Java
     public int ERR_ORDER_NOT_FOUND = 4001; //Order not found - Java
     public int ERR_UNKNOWN_ORDER_TYPE = 4002;//Unknown order type - Java
     public int ERR_ORDER_NOT_SELECTED = 4003;//order not selected - Java
-    
+
     public int ERR_UNKNOWN_SYMBOL = 4106; // Unknown symbol
     public int ERR_REQUOTE = 4112; // Requote
-
-    
 
     // Initialization
     public int INIT_FAILED = -1; // Initialization failed
@@ -123,11 +118,9 @@ public interface IExpertAdvisor {
     public int INT_MIN = Integer.MIN_VALUE;
     public int INT_MAX = Integer.MAX_VALUE;
 
-    
-    String __PATH__(); 
-    
-    String __FILE__ ();               
-                 
+    String __PATH__();
+
+    String __FILE__();
 
     int OnInit();
 
@@ -161,7 +154,7 @@ public interface IExpertAdvisor {
 
     double AccountStopoutLevel();
 
-    double AccountLeverage();
+    int AccountLeverage();
 
     double AccountBalance();
 
@@ -204,7 +197,7 @@ public interface IExpertAdvisor {
     double OrderTakeProfit();//target price
 
     double OrderStopLoss();//stoploss price
-    
+
     double OrderProfit();//profit in currency
 
     double AccountInfoDouble(int code);
@@ -216,11 +209,12 @@ public interface IExpertAdvisor {
     String Symbol();
 
     /**
-     * 
-     * @param index - can also mean ticket depending on if select_type is SELECT_BY_TICKET
+     *
+     * @param index - can also mean ticket depending on if select_type is
+     * SELECT_BY_TICKET
      * @param select_type
      * @param mode
-     * @return 
+     * @return
      */
     boolean OrderSelect(long index, int select_type, int mode);
 
@@ -259,7 +253,7 @@ public interface IExpertAdvisor {
 
     String AccountCompany();
 
-    long AccountNumber();
+    int AccountNumber();
 
     String AccountName();
 
@@ -287,23 +281,37 @@ public interface IExpertAdvisor {
 
     void SendNotification(String str);
 
-    double Close(int shift);
+    long Time(int shift);
+
+    int Volume(int shift);
+
+    double Open(int shift);
 
     double High(int shift);
 
     double Low(int shift);
 
-    double iClose(String symbol, int timeframe, int shift);
+    double Close(int shift);
+
+    long iTime(String symbol, int timeframe, int shift);
+
+    int iVolume(String symbol, int timeframe, int shift);
 
     double iOpen(String symbol, int timeframe, int shift);
 
-    double iLow(String symbol, int timeframe, int shift);
-
     double iHigh(String symbol, int timeframe, int shift);
 
-    int iHighest(String symbol, int timeframe, int mode, int shift);
+    double iLow(String symbol, int timeframe, int shift);
 
-    int iLowest(String symbol, int timeframe, int mode, int shift);
+    double iClose(String symbol, int timeframe, int shift);
+
+    int iHighest(String symbol, int timeframe, int type, int count);
+    
+    int iHighest(String symbol, int timeframe, int type, int count, int start);
+
+    int iLowest(String symbol, int timeframe, int type, int count);
+    
+    int iLowest(String symbol, int timeframe, int type, int count, int start);
 
     int Period();
 
@@ -329,25 +337,23 @@ public interface IExpertAdvisor {
 
     char StringGetChar(String str, int index);
 
-    int StringSplit(String str, char ch, String[] split);
+    String[] StringSplit(String str, char ch);
 
-    void StringReplace(String str, String search, String replacement);
+    String StringReplace(String str, String search, String replacement);
 
     int StringFind(String str, String search, int from_index);
 
     int StringFind(String str, String search);
 
-    int StringToUpper(String str, String search, int from_index);
+    String StringToUpper(String str);
 
     String CharArrayToString(char[] arr);
 
     void TerminalClose(int reason);
 
-    long AccountInfoInteger(int code);
+    int AccountInfoInteger(int code);
 
-    int AccountInfoIntegerInt(int code);
-
-    boolean TerminalInfoInteger(int code);
+    int TerminalInfoInteger(int code);
 
     void Sleep(int delay);
 
@@ -365,17 +371,17 @@ public interface IExpertAdvisor {
 
     int ArraySize(double[] arr);
 
-    int ArrayResize(long[] arr, int new_size);
+    long[] ArrayResize(long[] arr, int new_size);
 
-    int ArrayResize(int[] arr, int new_size);
+    int[] ArrayResize(int[] arr, int new_size);
 
-    int ArrayResize(double[] arr, int new_size);
+    double[] ArrayResize(double[] arr, int new_size);
 
-    int ArrayResize(char[] arr, int new_size);
+    char[] ArrayResize(char[] arr, int new_size);
 
-    void ArrayCopy(double[] from, double[] to);
+    double[] ArrayCopy(double[] to, double[] from);
 
-    void ArrayCopy(long[] from, long[] to);
+    long[] ArrayCopy(long[] to, long[] from);
 
-    void ArrayCopy(int[] from, int[] to);
+    int[] ArrayCopy(int[] to, int[] from);
 }

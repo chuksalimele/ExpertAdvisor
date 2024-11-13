@@ -112,7 +112,7 @@ public abstract class ExpertAdvisorMQ4 implements IExpertAdvisor{
     }
 
     @Override
-    public double AccountLeverage() {
+    public int AccountLeverage() {
         return expertService.AccountLeverage();
     }
 
@@ -316,17 +316,17 @@ public abstract class ExpertAdvisorMQ4 implements IExpertAdvisor{
 
     @Override
     public int StringLen(String str) {
-        return str.length();
+        return expertService.StringLen(str);
     }
 
     @Override
     public String StringSubstr(String path, int i, int i0) {
-        return path.substring(i, i0);
+        return expertService.StringSubstr(path, i, i0);
     }
 
     @Override
     public String StringSubstr(String path, int i) {
-        return path.substring(i);
+        return expertService.StringSubstr(path, i);
     }
 
     @Override
@@ -340,7 +340,7 @@ public abstract class ExpertAdvisorMQ4 implements IExpertAdvisor{
     }
 
     @Override
-    public long AccountNumber() {
+    public int AccountNumber() {
         return expertService.AccountNumber();
     }
 
@@ -408,11 +408,22 @@ public abstract class ExpertAdvisorMQ4 implements IExpertAdvisor{
     public void SendNotification(String str) {
          expertService.SendNotification(str);
     }
-
-    //that is Close[0] in mql4
+    //that is Time[0] in mql4
     @Override
-    public double Close(int shift) {//close price at the bar 
-        return expertService.Close(shift);
+    public long Time(int shift) {//Time at the bar 
+        return expertService.Time(shift);
+    }
+    
+    //that is Volume[0] in mql4
+    @Override
+    public int Volume(int shift) {//Volume at the bar 
+        return expertService.Volume(shift);
+    }
+    
+    //that is Open[0] in mql4
+    @Override
+    public double Open(int shift) {//Open price at the bar 
+        return expertService.Open(shift);
     }
 
     @Override
@@ -425,36 +436,62 @@ public abstract class ExpertAdvisorMQ4 implements IExpertAdvisor{
         return expertService.Low(shift);
     }
 
+    //that is Close[0] in mql4
+    @Override
+    public double Close(int shift) {//close price at the bar 
+        return expertService.Close(shift);
+    }
+    
+    @Override
+    public long iTime(String symbol, int timeframe, int shift) {//time at the bar 
+        return expertService.iTime(symbol, timeframe, shift);
+    }
+    
+    @Override
+    public int iVolume(String symbol, int timeframe, int shift) {//volume at the bar 
+        return expertService.iVolume(symbol, timeframe, shift);
+    }
+        
+    @Override
+    public double iOpen(String symbol, int timeframe, int shift) {//open price at the bar 
+        return expertService.iOpen(symbol, timeframe, shift);
+    }
+    
+    @Override
+    public double iHigh(String symbol, int timeframe, int shift) {//high price at the bar 
+        return expertService.iHigh(symbol, timeframe, shift);
+    }
+    
+    @Override
+    public double iLow(String symbol, int timeframe, int shift) {//low price at the bar 
+        return expertService.iLow(symbol, timeframe, shift);
+    }
+    
     @Override
     public double iClose(String symbol, int timeframe, int shift) {//close price at the bar 
         return expertService.iClose(symbol, timeframe, shift);
     }
 
     @Override
-    public double iOpen(String symbol, int timeframe, int shift) {//close price at the bar 
-        return expertService.iOpen(symbol, timeframe, shift);
+    public int iHighest(String symbol, int timeframe, int type, int count) {
+        return expertService.iHighest(symbol, timeframe, type, count);
     }
 
     @Override
-    public double iLow(String symbol, int timeframe, int shift) {//close price at the bar 
-        return expertService.iLow(symbol, timeframe, shift);
+    public int iHighest(String symbol, int timeframe, int type, int count, int start) {
+        return expertService.iHighest(symbol, timeframe, type, count, start);
     }
 
     @Override
-    public double iHigh(String symbol, int timeframe, int shift) {//close price at the bar 
-        return expertService.iHigh(symbol, timeframe, shift);
+    public int iLowest(String symbol, int timeframe, int type, int count) {
+        return expertService.iLowest(symbol, timeframe, type, count);
     }
-
+    
     @Override
-    public int iHighest(String symbol, int timeframe, int mode, int shift) {
-        return expertService.iHighest(symbol, timeframe, mode, shift);
+    public int iLowest(String symbol, int timeframe, int type, int count, int start) {
+        return expertService.iLowest(symbol, timeframe, type, count, start);
     }
-
-    @Override
-    public int iLowest(String symbol, int timeframe, int mode, int shift) {
-        return expertService.iLowest(symbol, timeframe, mode, shift);
-    }
-
+    
     @Override
     public int Period() {
         return expertService.Period();
@@ -502,49 +539,47 @@ public abstract class ExpertAdvisorMQ4 implements IExpertAdvisor{
 
     @Override
     public int StringToInteger(String value) {
-        return Integer.parseInt(value);
+        return expertService.StringToInteger(value);
     }
 
     @Override
     public double StringToDouble(String value) {
-        return Double.parseDouble(value);
+        return expertService.StringToDouble(value);
     }
 
     @Override
     public char StringGetChar(String str, int index) {
-        return str.charAt(index);
+        return expertService.StringGetChar(str, index);
     }
 
     @Override
-    public int StringSplit(String str, char ch, String[] split) {
-        split = str.split(Character.toString(ch));
-        return split.length;
+    public String[] StringSplit(String str, char ch) {
+        return expertService.StringSplit(str, ch);
     }
 
     @Override
-    public void StringReplace(String str, String search, String replacement) {
-        //TODO
+    public String StringReplace(String str, String search, String replacement) {
+        return expertService.StringReplace(str, search, replacement);
     }
 
     @Override
     public int StringFind(String str, String search, int from_index) {
-        return str.indexOf(search, from_index);
+        return expertService.StringFind(str, search, from_index);
     }
 
     @Override
     public int StringFind(String str, String search) {
-        return StringFind(str, search, 0);
+        return expertService.StringFind(str, search);
     }
 
     @Override
-    public int StringToUpper(String str, String search, int from_index) {
-        //TODO
-        return -1;
+    public String StringToUpper(String str) {
+        return expertService.StringToUpper(str);
     }
 
     @Override
     public String CharArrayToString(char[] arr) {
-        return String.valueOf(arr);
+        return expertService.CharArrayToString(arr);
     }
 
     @Override
@@ -553,17 +588,13 @@ public abstract class ExpertAdvisorMQ4 implements IExpertAdvisor{
     }
 
     @Override
-    public long AccountInfoInteger(int code) {
+    public int AccountInfoInteger(int code) {
         return expertService.AccountInfoInteger(code);
     }
 
-    @Override
-    public int AccountInfoIntegerInt(int code) {
-        return expertService.AccountInfoIntegerInt(code);
-    }
 
     @Override
-    public boolean TerminalInfoInteger(int code) {
+    public int TerminalInfoInteger(int code) {
         return expertService.TerminalInfoInteger(code);
     }
 
@@ -608,37 +639,37 @@ public abstract class ExpertAdvisorMQ4 implements IExpertAdvisor{
     }
 
     @Override
-    public int ArrayResize(long[] arr, int new_size) {
+    public long[] ArrayResize(long[] arr, int new_size) {
         return expertService.ArrayResize(arr, new_size);
     }
 
     @Override
-    public int ArrayResize(int[] arr, int new_size) {
+    public int[] ArrayResize(int[] arr, int new_size) {
         return expertService.ArrayResize(arr, new_size);
     }
 
     @Override
-    public int ArrayResize(double[] arr, int new_size) {
+    public double[] ArrayResize(double[] arr, int new_size) {
         return expertService.ArrayResize(arr, new_size);
     }
 
     @Override
-    public int ArrayResize(char[] arr, int new_size) {
+    public char[] ArrayResize(char[] arr, int new_size) {
         return expertService.ArrayResize(arr, new_size);
     }
 
     @Override
-    public void ArrayCopy(double[] from, double[] to) {
-        expertService.ArrayCopy(from, to);
+    public double[] ArrayCopy(double[] to, double[] from) {
+        return expertService.ArrayCopy(to, from);
     }
 
     @Override
-    public void ArrayCopy(long[] from, long[] to) {
-        expertService.ArrayCopy(from, to);
+    public long[] ArrayCopy(long[] to, long[] from) {
+        return expertService.ArrayCopy(to, from);
     }
 
     @Override
-    public void ArrayCopy(int[] from, int[] to) {
-        expertService.ArrayCopy(from, to);
+    public int[] ArrayCopy(int[] to, int[] from) {
+        return expertService.ArrayCopy(to, from);
     }
 }
