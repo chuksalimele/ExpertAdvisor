@@ -98,17 +98,17 @@ public interface IExpertAdvisor {
     public int MODE_VOLUME = 12;
     public int MODE_TIME = 13;
     public int MODE_TRADEALLOWED = 14; // Trade allowed mode
-    public int MODE_LOTSIZE = 15; // Trade allowed mode
+    public int MODE_LOTSIZE = 15; 
     public int MODE_HISTORY = 16;
     public int MODE_TICKSIZE = 17;
 
-    public int ERR_SYMBOL_NOT_FOUND = 4000;//Symbol not found - Java
-    public int ERR_ORDER_NOT_FOUND = 4001; //Order not found - Java
-    public int ERR_UNKNOWN_ORDER_TYPE = 4002;//Unknown order type - Java
-    public int ERR_ORDER_NOT_SELECTED = 4003;//order not selected - Java
+    public int ERR_SYMBOL_NOT_FOUND = 7000;//Symbol not found - Java
+    public int ERR_ORDER_NOT_FOUND = 7001; //Order not found - Java
+    public int ERR_UNKNOWN_ORDER_TYPE = 7002;//Unknown order type - Java
+    public int ERR_ORDER_NOT_SELECTED = 7003;//order not selected - Java
 
-    public int ERR_UNKNOWN_SYMBOL = 4106; // Unknown symbol
-    public int ERR_REQUOTE = 4112; // Requote
+    public int ERR_UNKNOWN_SYMBOL = 4106; // Unknown symbol - mql4
+    public int ERR_REQUOTE = 138; // Requote - mql4 - DO NOT CHANGE THE CODE VALUE
 
     // Initialization
     public int INIT_FAILED = -1; // Initialization failed
@@ -166,7 +166,7 @@ public interface IExpertAdvisor {
 
     int PositionsTotal();
 
-    double NormalizeDouble(double d, int digits);
+    double NormalizeDouble(double value, int digits);
 
     double Point();
 
@@ -231,11 +231,11 @@ public interface IExpertAdvisor {
 
     void ResetLastError();
 
-    String ErrorDescription(int error);
+    String ErrorDescription(int error_code);
 
-    int MarketInfo(String symbo, int mode);
+    double MarketInfo(String symbol, int mode);
 
-    void Print(Object... args);
+    void Print(String... args);
 
     void PrintFormat(String str, Object... args);
 

@@ -142,8 +142,8 @@ public abstract class ExpertAdvisorMQ4 implements IExpertAdvisor{
     }
 
     @Override
-    public double NormalizeDouble(double d, int digits) {
-        return expertService.NormalizeDouble(d, digits);
+    public double NormalizeDouble(double value, int digits) {
+        return expertService.NormalizeDouble(value, digits);
     }
 
     @Override
@@ -285,18 +285,18 @@ public abstract class ExpertAdvisorMQ4 implements IExpertAdvisor{
     }
 
     @Override
-    public String ErrorDescription(int error) {
-        return expertService.ErrorDescription(error);
+    public String ErrorDescription(int error_code) {
+        return expertService.ErrorDescription(error_code);
     }
 
     @Override
-    public int MarketInfo(String symbol, int mode) {
+    public double MarketInfo(String symbol, int mode) {
         return expertService.MarketInfo(symbol, mode);
     }
 
     @Override
-    public void Print(Object... args) {
-        expertService.Print();
+    public void Print(String... args) {
+        expertService.Print(args);
     }
 
     @Override
