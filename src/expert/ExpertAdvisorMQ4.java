@@ -295,7 +295,7 @@ public abstract class ExpertAdvisorMQ4 implements IExpertAdvisor{
     }
 
     @Override
-    public void Print(String... args) {
+    public void Print(Object... args) {
         expertService.Print(args);
     }
 

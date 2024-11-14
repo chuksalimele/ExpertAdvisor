@@ -235,7 +235,7 @@ public interface IExpertAdvisor {
 
     double MarketInfo(String symbol, int mode);
 
-    void Print(String... args);
+    void Print(Object... args);
 
     void PrintFormat(String str, Object... args);
 
@@ -384,4 +384,15 @@ public interface IExpertAdvisor {
     long[] ArrayCopy(long[] to, long[] from);
 
     int[] ArrayCopy(int[] to, int[] from);
+    
+    
+    public static void main(String... args){
+        Object n = 8.8D;
+        Object m = "chuks";
+        
+        
+        System.out.println(n.toString());
+        System.out.println(m);
+        System.out.println(n+"me");
+    }
 }
