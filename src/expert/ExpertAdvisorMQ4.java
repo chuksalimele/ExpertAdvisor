@@ -609,8 +609,8 @@ public abstract class ExpertAdvisorMQ4 implements IExpertAdvisor{
     }
 
     @Override
-    public boolean OrderClose(long ticket, double lots, int mode, int slippage) {
-        return expertService.OrderClose(ticket, lots,  mode, slippage);
+    public boolean OrderClose(long ticket, double lots, double price, int slippage) {
+        return expertService.OrderClose(ticket, lots,  price, slippage);
     }
 
     @Override

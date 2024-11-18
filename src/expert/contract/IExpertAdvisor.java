@@ -359,7 +359,7 @@ public interface IExpertAdvisor {
 
     void RefreshRates();
 
-    boolean OrderClose(long ticket, double lots, int mode, int slippage);
+    boolean OrderClose(long ticket, double lots, double price, int slippage);
 
     int OrderMagicNumber();
 
