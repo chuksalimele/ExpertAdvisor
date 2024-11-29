@@ -36,14 +36,16 @@ public interface IExpertAdvisor {
     public int TERMINAL_CONNECTED = 1; // Terminal connected
 
     // Reason Codes
-    public int REASON_CHARTCHANGE = 1; // Chart change
-    public int REASON_RECOMPILE = 2; // Recompile
-    public int REASON_CHARTCLOSE = 3; // Chart close
-    public int REASON_PARAMETERS = 4; // Parameters change
-    public int REASON_ACCOUNT = 5; // Account change
-    public int REASON_TEMPLATE = 6; // Template change
-    public int REASON_INITFAILED = 7; // Initialization failed
-    public int REASON_CLOSE = 8; // Close
+    public int REASON_PROGRAM = 0;//Expert Advisor terminated its operation by calling the ExpertRemove() function
+    public int REASON_REMOVE = 1;//Program has been deleted from the chart
+    public int REASON_CHARTCHANGE = 2; // Chart change
+    public int REASON_RECOMPILE = 3; // Recompile
+    public int REASON_CHARTCLOSE = 4; // Chart close
+    public int REASON_PARAMETERS = 5; // Parameters change
+    public int REASON_ACCOUNT = 6; // Account change
+    public int REASON_TEMPLATE = 7; // Template change
+    public int REASON_INITFAILED = 8; // Initialization failed
+    public int REASON_CLOSE = 9; // Close
 
     // Message Box Icons
     public int MB_ICONERROR = 0x10; // Error icon
@@ -98,7 +100,7 @@ public interface IExpertAdvisor {
     public int MODE_VOLUME = 12;
     public int MODE_TIME = 13;
     public int MODE_TRADEALLOWED = 14; // Trade allowed mode
-    public int MODE_LOTSIZE = 15; 
+    public int MODE_LOTSIZE = 15;
     public int MODE_HISTORY = 16;
     public int MODE_TICKSIZE = 17;
 
@@ -306,11 +308,11 @@ public interface IExpertAdvisor {
     double iClose(String symbol, int timeframe, int shift);
 
     int iHighest(String symbol, int timeframe, int type, int count);
-    
+
     int iHighest(String symbol, int timeframe, int type, int count, int start);
 
     int iLowest(String symbol, int timeframe, int type, int count);
-    
+
     int iLowest(String symbol, int timeframe, int type, int count, int start);
 
     int Period();
@@ -384,15 +386,13 @@ public interface IExpertAdvisor {
     long[] ArrayCopy(long[] to, long[] from);
 
     int[] ArrayCopy(int[] to, int[] from);
-    
-    
-    public static void main(String... args){
+
+    public static void main(String... args) {
         Object n = 8.8D;
         Object m = "chuks";
-        
-        
+
         System.out.println(n.toString());
         System.out.println(m);
-        System.out.println(n+"me");
+        System.out.println(n + "me");
     }
 }

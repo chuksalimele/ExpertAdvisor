@@ -48,27 +48,15 @@ public abstract class ExpertAdvisorMQ4 implements IExpertAdvisor{
 
     @Override
     public abstract void OnTradeTransaction();
-    
-    
-    void setIsExpertEnabled(boolean b) {
-        expertService.setIsExpertEnabled(b);
-    }
 
     @Override
     public boolean IsExpertEnabled() {
         return expertService.IsExpertEnabled();
     }
 
-    void setIsDllsAllowed(boolean b) {
-        expertService.setIsDllsAllowed(b);
-    }
-
+    @Override
     public boolean IsDllsAllowed() {
         return expertService.IsDllsAllowed();
-    }
-
-    void setIsTradeAllowed(boolean b) {
-        expertService.setIsTradeAllowed(b);
     }
 
     @Override
@@ -78,7 +66,7 @@ public abstract class ExpertAdvisorMQ4 implements IExpertAdvisor{
 
     @Override
     public double MathAbs(double num) {
-        return Math.abs(num);
+        return expertService.MathAbs(num);
     }
 
     @Override
@@ -180,7 +168,6 @@ public abstract class ExpertAdvisorMQ4 implements IExpertAdvisor{
     public long OrderCloseTime() {
         return expertService.OrderCloseTime();
     }
-    //OrderCloseTime
 
     @Override
     public String OrderSymbol() {
@@ -263,10 +250,8 @@ public abstract class ExpertAdvisorMQ4 implements IExpertAdvisor{
     }
 
     @Override
-    public long OrderSend(String symbol, int order_type, double lot_size, double entry_price, int slippage, double stoploss, double target,
-            String comment, int magic_number, long expiry) {
-       return expertService.OrderSend(symbol, order_type, lot_size, entry_price, slippage, stoploss, target,
-             comment, magic_number,  expiry);
+    public long OrderSend(String symbol, int order_type, double lot_size, double entry_price, int slippage, double stoploss, double target, String comment, int magic_number, long expiry) {
+        return expertService.OrderSend(symbol, order_type, lot_size, entry_price, slippage, stoploss, target, comment, magic_number, expiry);
     }
 
     @Override
@@ -281,7 +266,7 @@ public abstract class ExpertAdvisorMQ4 implements IExpertAdvisor{
 
     @Override
     public void ResetLastError() {
-         expertService.ResetLastError();
+        expertService.ResetLastError();
     }
 
     @Override
@@ -366,7 +351,7 @@ public abstract class ExpertAdvisorMQ4 implements IExpertAdvisor{
 
     @Override
     public void EventKillTimer() {
-         expertService.EventKillTimer();
+        expertService.EventKillTimer();
     }
 
     @Override
@@ -406,23 +391,21 @@ public abstract class ExpertAdvisorMQ4 implements IExpertAdvisor{
 
     @Override
     public void SendNotification(String str) {
-         expertService.SendNotification(str);
+        expertService.SendNotification(str);
     }
-    //that is Time[0] in mql4
+
     @Override
-    public long Time(int shift) {//Time at the bar 
+    public long Time(int shift) {
         return expertService.Time(shift);
     }
-    
-    //that is Volume[0] in mql4
+
     @Override
-    public int Volume(int shift) {//Volume at the bar 
+    public int Volume(int shift) {
         return expertService.Volume(shift);
     }
-    
-    //that is Open[0] in mql4
+
     @Override
-    public double Open(int shift) {//Open price at the bar 
+    public double Open(int shift) {
         return expertService.Open(shift);
     }
 
@@ -436,39 +419,38 @@ public abstract class ExpertAdvisorMQ4 implements IExpertAdvisor{
         return expertService.Low(shift);
     }
 
-    //that is Close[0] in mql4
     @Override
-    public double Close(int shift) {//close price at the bar 
+    public double Close(int shift) {
         return expertService.Close(shift);
     }
-    
+
     @Override
-    public long iTime(String symbol, int timeframe, int shift) {//time at the bar 
+    public long iTime(String symbol, int timeframe, int shift) {
         return expertService.iTime(symbol, timeframe, shift);
     }
-    
+
     @Override
-    public int iVolume(String symbol, int timeframe, int shift) {//volume at the bar 
+    public int iVolume(String symbol, int timeframe, int shift) {
         return expertService.iVolume(symbol, timeframe, shift);
     }
-        
+
     @Override
-    public double iOpen(String symbol, int timeframe, int shift) {//open price at the bar 
+    public double iOpen(String symbol, int timeframe, int shift) {
         return expertService.iOpen(symbol, timeframe, shift);
     }
-    
+
     @Override
-    public double iHigh(String symbol, int timeframe, int shift) {//high price at the bar 
+    public double iHigh(String symbol, int timeframe, int shift) {
         return expertService.iHigh(symbol, timeframe, shift);
     }
-    
+
     @Override
-    public double iLow(String symbol, int timeframe, int shift) {//low price at the bar 
+    public double iLow(String symbol, int timeframe, int shift) {
         return expertService.iLow(symbol, timeframe, shift);
     }
-    
+
     @Override
-    public double iClose(String symbol, int timeframe, int shift) {//close price at the bar 
+    public double iClose(String symbol, int timeframe, int shift) {
         return expertService.iClose(symbol, timeframe, shift);
     }
 
@@ -486,12 +468,12 @@ public abstract class ExpertAdvisorMQ4 implements IExpertAdvisor{
     public int iLowest(String symbol, int timeframe, int type, int count) {
         return expertService.iLowest(symbol, timeframe, type, count);
     }
-    
+
     @Override
     public int iLowest(String symbol, int timeframe, int type, int count, int start) {
         return expertService.iLowest(symbol, timeframe, type, count, start);
     }
-    
+
     @Override
     public int Period() {
         return expertService.Period();
@@ -509,7 +491,7 @@ public abstract class ExpertAdvisorMQ4 implements IExpertAdvisor{
 
     @Override
     public String LongToString(long value) {
-        return Long.toString(value);
+        return expertService.LongToString(value);
     }
 
     @Override
@@ -519,7 +501,7 @@ public abstract class ExpertAdvisorMQ4 implements IExpertAdvisor{
 
     @Override
     public String IntegerToString(int value) {
-        return Integer.toString(value);
+        return expertService.IntegerToString(value);
     }
 
     @Override
@@ -529,7 +511,7 @@ public abstract class ExpertAdvisorMQ4 implements IExpertAdvisor{
 
     @Override
     public String DoubleToString(double value) {
-        return Double.toString(value);
+        return expertService.DoubleToString(value);
     }
 
     @Override
@@ -592,7 +574,6 @@ public abstract class ExpertAdvisorMQ4 implements IExpertAdvisor{
         return expertService.AccountInfoInteger(code);
     }
 
-
     @Override
     public int TerminalInfoInteger(int code) {
         return expertService.TerminalInfoInteger(code);
@@ -600,7 +581,7 @@ public abstract class ExpertAdvisorMQ4 implements IExpertAdvisor{
 
     @Override
     public void Sleep(int delay) {
-         expertService.Sleep(delay);
+        expertService.Sleep(delay);
     }
 
     @Override
@@ -610,7 +591,7 @@ public abstract class ExpertAdvisorMQ4 implements IExpertAdvisor{
 
     @Override
     public boolean OrderClose(long ticket, double lots, double price, int slippage) {
-        return expertService.OrderClose(ticket, lots,  price, slippage);
+        return expertService.OrderClose(ticket, lots, price, slippage);
     }
 
     @Override
@@ -672,4 +653,6 @@ public abstract class ExpertAdvisorMQ4 implements IExpertAdvisor{
     public int[] ArrayCopy(int[] to, int[] from) {
         return expertService.ArrayCopy(to, from);
     }
+    
+
 }
