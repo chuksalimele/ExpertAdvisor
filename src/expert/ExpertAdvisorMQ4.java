@@ -475,7 +475,7 @@ public abstract class ExpertAdvisorMQ4 implements IExpertAdvisor{
     }
 
     @Override
-    public int Period() {//period
+    public int Period() {
         return expertService.Period();
     }
 
