@@ -620,6 +620,11 @@ public abstract class ExpertAdvisorMQ4 implements IExpertAdvisor{
     }
 
     @Override
+    public String[] ArrayResize(String[] arr, int new_size) {
+        return expertService.ArrayResize(arr, new_size);
+    }
+
+    @Override
     public long[] ArrayResize(long[] arr, int new_size) {
         return expertService.ArrayResize(arr, new_size);
     }

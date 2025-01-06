@@ -372,6 +372,8 @@ public interface IExpertAdvisor {
     int ArraySize(int[] arr);
 
     int ArraySize(double[] arr);
+    
+    String[] ArrayResize(String[] arr, int new_size);
 
     long[] ArrayResize(long[] arr, int new_size);
 
